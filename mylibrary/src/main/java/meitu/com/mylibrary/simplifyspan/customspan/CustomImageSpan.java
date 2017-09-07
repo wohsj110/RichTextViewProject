@@ -59,7 +59,16 @@ public class CustomImageSpan extends ImageSpan implements OnClickStateChangeList
 
     @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
+        //mBgDrawable.getState()
+        if (mBgDrawable!=null){
+            if (isSelected){
+                mBgDrawable.setState(new int[] {android.R.attr.state_pressed});
+            }else {
+                mBgDrawable.setState(new int[] {});
+            }
 
+            mBgDrawable.draw(canvas);
+        }
         Drawable b = getCachedDrawable();
         int drawableHeight = b.getIntrinsicHeight();
         int drawableWidth = b.getIntrinsicWidth();
@@ -88,16 +97,24 @@ public class CustomImageSpan extends ImageSpan implements OnClickStateChangeList
                 canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + mRect.height(), paint);
             }
         }*/
-
+        if (mBgDrawable!=null){
+            if (isSelected){
+                mBgDrawable.setState(new int[] {android.R.attr.state_pressed});
+            }else {
+                mBgDrawable.setState(new int[] {});
+            }
+            mBgDrawable.setBounds((int) x-8, (int) bgTop-8,(int)  x + drawableWidth+textLength+8,(int)  bgTop + lineHeight+8);
+            mBgDrawable.draw(canvas);
+        }
         if (isClickable && isSelected) {
             // click background
             paint.setColor(pressBgColor);
-            //canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
+            canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
 
             canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + lineHeight, paint);
         } else {
             // normal background
-           paint.setColor(mBgColor);
+            paint.setColor(mBgColor);
             canvas.drawRect(x, bgTop, x + drawableWidth+textLength, bgTop + lineHeight, paint);
 
         }
@@ -107,10 +124,7 @@ public class CustomImageSpan extends ImageSpan implements OnClickStateChangeList
             super.draw(canvas, text, start, end, x, top, y, bottom, paint);
             return;
         }
-        //mBgDrawable.getState()
-        if (mBgDrawable!=null){
-            mBgDrawable.draw(canvas);
-        }
+
         canvas.save();
 
         if (mLineTextHeight <= 0) {

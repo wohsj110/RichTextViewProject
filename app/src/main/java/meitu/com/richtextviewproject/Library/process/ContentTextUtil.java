@@ -181,16 +181,6 @@ public class ContentTextUtil {
                             new SpecialTextUnit(bean.getURLName())
                             );
 
-                }else {
-                    mSpanBuild.appendMultiClickable(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
-                                @Override
-                                public void onClick(TextView tv, String clickText) {
-                                    Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
-                                }
-                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(linkPressBgColor).setNormalBgColor(linkNormalBgColor),
-                            new SpecialImageUnit(context,bean.getURLName() ,BitmapFactory.decodeResource(context.getResources(), R.drawable.timeline_card_small_web), 40, 40).setGravity(SpecialGravity.CENTER),
-                            new SpecialTextUnit(bean.getURLName())
-                    );
                 }
 
             }
