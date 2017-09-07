@@ -25,28 +25,13 @@ import meitu.com.richtextviewproject.R;
  * Created by meitu on 2017/9/6.
  */
 
-@SuppressLint("AppCompatCustomView")
-public class RichTextView extends TextView {
-    public RichTextView(Context context) {
-        super(context);
-    }
+public class RichTextViewHelper{
 
-    public RichTextView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
 
-    public RichTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    public void setRichText(String source) {
-        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(source, this.getContext(), this);
-        this.setText(spanBuild.build());
-    }
-    public void setRichText(final RichTextBean richTextBean) {
+    public static void setRichText(final TextView textView, final RichTextBean richTextBean) {
         final long startTime = System.currentTimeMillis();
-        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(),richTextBean.getUrlHashMap(), this.getContext(), this);
-        this.setText(spanBuild.build());
+        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(),richTextBean.getUrlHashMap(), textView.getContext(), textView);
+        textView.setText(spanBuild.build());
         Log.e("耗时","耗时=="+(System.currentTimeMillis()-startTime));
         BitmapFactory.Options decodingOptions = new BitmapFactory.Options();
         decodingOptions.outHeight=50;
@@ -73,15 +58,15 @@ public class RichTextView extends TextView {
                     if (checkLoadAll(richTextBean.getUrlHashMap())) {
                         Log.e("耗时","异步加载图片耗时=="+(System.currentTimeMillis()-startTimeAsync));
                         long startTime = System.currentTimeMillis();
-                        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(), richTextBean.getUrlHashMap(), RichTextView.this.getContext(), RichTextView.this);
-                        RichTextView.this.setText(spanBuild.build());
+                        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(), richTextBean.getUrlHashMap(), textView.getContext(), textView);
+                        textView.setText(spanBuild.build());
                         Log.e("耗时","耗时=="+(System.currentTimeMillis()-startTime));
                     }
                 }
             });
         }
     }
-    private boolean checkLoadAll(HashMap<String,SpecialUrlBean> map){
+    private static boolean checkLoadAll(HashMap<String,SpecialUrlBean> map){
         boolean loadAll=true;
         for (Object o : map.entrySet()) {
             Map.Entry entry = (Map.Entry) o;

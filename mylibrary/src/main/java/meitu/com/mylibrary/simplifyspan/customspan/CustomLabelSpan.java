@@ -120,14 +120,18 @@ public class CustomLabelSpan extends ReplacementSpan implements OnClickStateChan
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
         float finalUnitHeight = bottom - top;
         float bgTop = bottom - finalUnitHeight;
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        int lineHeight = (int) (Math.ceil(fontMetrics.descent - fontMetrics.ascent) + 2);
         if (isClickable && isSelected ) {
             // click background
             paint.setColor(pressBgColor);
-            canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
+            //canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
+            canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + lineHeight, paint);
         } else {
             // normal background
                 paint.setColor(mBgColor);
-                canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
+                //canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
+                canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + lineHeight, paint);
         }
 
         float labelTextSize = mSpecialLabelUnit.getLabelTextSize();

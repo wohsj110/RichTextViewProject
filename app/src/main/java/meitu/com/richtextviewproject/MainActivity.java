@@ -17,8 +17,17 @@ import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
 import meitu.com.mylibrary.simplifyspan.unit.SpecialImageUnit;
 import meitu.com.mylibrary.simplifyspan.unit.SpecialLabelUnit;
 import meitu.com.mylibrary.simplifyspan.unit.SpecialTextUnit;
+import meitu.com.richtextviewproject.Library.widget.RichTextBean;
+import meitu.com.richtextviewproject.Library.widget.RichTextViewHelper;
+import meitu.com.richtextviewproject.Library.widget.SpecialUrlBean;
 
 public class MainActivity extends AppCompatActivity implements OnClickableSpanListener {
+    private String mUrl = "https://www.baidu.com";
+    private String mUrlIcon = "http://xianse.cc/upload/201410/1108211731.512x512.jpg";
+    private String mUrl2 = "http://www.xianse.com";
+    private String mUrl2Icon = "http://ico.ooopic.com/ajax/iconpng/?id=154282.png";
+
+    private String mSource="新上宝贝，最潮明显同款大花长裙~\n@阿丁 买家晒图http://www.xianse.com里克哈善良的:#话题# 深刻的哈萨https://www.baidu.com\n哒哒哒四大可好看了哈了";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements OnClickableSpanLi
         simplifySpanBuild4.append(" 后面加的内容是为了凑字数的哈");
         tvText4.setText(simplifySpanBuild4.build());
 
-
         SimplifySpanBuild simplifySpanBuild41 = new SimplifySpanBuild();
         simplifySpanBuild41.append("无默认背景")
                 .append(new SpecialTextUnit("点我点我1").setClickableUnit(new SpecialClickableUnit(tvText41, this).setPressBgColor(0xFFFF5000)).setTextColor(Color.BLUE))
@@ -152,6 +160,23 @@ public class MainActivity extends AppCompatActivity implements OnClickableSpanLi
                 .append(new SpecialTextUnit("点我点我3").setClickableUnit(new SpecialClickableUnit(tvText41, this).setPressBgColor(Color.BLUE).setPressTextColor(Color.WHITE)).setTextColor(0xFFFF5000).setTextBackgroundColor(0xFF87CEEB))
                 .append("我只是个结尾");
         tvText41.setText(simplifySpanBuild41.build());
+
+        TextView richTextView = (TextView) findViewById(R.id.rtv_conent);
+        RichTextBean richTextBean = new RichTextBean();
+        richTextBean.setTextcontent(mSource);
+        SpecialUrlBean urlBean =new SpecialUrlBean();
+        urlBean.setMainURL(mUrl);
+        urlBean.setIconURL(mUrlIcon);
+        urlBean.setURLName("百度链接");
+        SpecialUrlBean urlBean2 =new SpecialUrlBean();
+        urlBean2.setMainURL(mUrl2);
+        urlBean2.setIconURL(mUrl2Icon);
+        urlBean2.setBgNormalColor(0xAF98D9B6);
+        urlBean2.setBgPressColor(Color.GREEN);
+        urlBean2.setURLName("鲜网链接");
+        richTextBean.getUrlHashMap().put(mUrl,urlBean);
+        richTextBean.getUrlHashMap().put(mUrl2,urlBean2);
+        RichTextViewHelper.setRichText(richTextView,richTextBean);
     }
 
     @Override

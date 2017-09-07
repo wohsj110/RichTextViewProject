@@ -3,20 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/myDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="meitu.com.richtextviewproject.MeituActivity">
     <TextView
         android:id="@+id/tv_meitu"
+        android:textColor="#333333"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <meitu.com.richtextviewproject.Library.widget.RichTextView
-        android:textColor="@android:color/white"
-        android:lineSpacingExtra="5dp"
+    <TextView
         android:letterSpacing="0.15"
         android:lineSpacingMultiplier="1.5"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
         android:id="@+id/rtv_conent"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"

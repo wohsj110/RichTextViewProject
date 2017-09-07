@@ -7,8 +7,8 @@ public class SpecialUrlBean {
     private String mMainURL;
     private String mURLName;
     private String mIconURL;
-    private int mTextNormalColor= Color.WHITE;
-    private int mTextPressColor=Color.WHITE;
+    private int mTextNormalColor= Color.BLACK;
+    private int mTextPressColor=Color.BLACK;
     private int mBgNormalColor=0xFF87CEFA;
     private int mBgPressColor=0xFF83B5ED;
     private Bitmap mIcon;

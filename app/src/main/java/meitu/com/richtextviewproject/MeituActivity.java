@@ -14,7 +14,8 @@ import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
 import meitu.com.mylibrary.simplifyspan.unit.SpecialImageUnit;
 import meitu.com.mylibrary.simplifyspan.unit.SpecialTextUnit;
 import meitu.com.richtextviewproject.Library.widget.RichTextBean;
-import meitu.com.richtextviewproject.Library.widget.RichTextView;
+
+import meitu.com.richtextviewproject.Library.widget.RichTextViewHelper;
 import meitu.com.richtextviewproject.Library.widget.SpecialUrlBean;
 
 public class MeituActivity extends AppCompatActivity implements OnClickableSpanListener {
@@ -32,7 +33,7 @@ public class MeituActivity extends AppCompatActivity implements OnClickableSpanL
         setContentView(R.layout.activity_meitu);
         mTextView = (TextView) findViewById(R.id.tv_meitu);
         setRichText();
-        RichTextView richTextView = (RichTextView) findViewById(R.id.rtv_conent);
+        TextView richTextView = (TextView) findViewById(R.id.rtv_conent);
         RichTextBean richTextBean = new RichTextBean();
         richTextBean.setTextcontent(mSource);
         SpecialUrlBean urlBean =new SpecialUrlBean();
@@ -43,18 +44,17 @@ public class MeituActivity extends AppCompatActivity implements OnClickableSpanL
         urlBean2.setMainURL(mUrl2);
         urlBean2.setIconURL(mUrl2Icon);
         urlBean2.setBgNormalColor(0xAF98D9B6);
-        //urlBean2.setBgPressColor(0xAF51E763);
         urlBean2.setBgPressColor(Color.GREEN);
         urlBean2.setURLName("鲜网链接");
         richTextBean.getUrlHashMap().put(mUrl,urlBean);
         richTextBean.getUrlHashMap().put(mUrl2,urlBean2);
-        richTextView.setRichText(richTextBean);
+        RichTextViewHelper.setRichText(richTextView,richTextBean);
         //richTextView.setRichText(mSource);
 
 
     }
     private void setRichText() {
-        int linkNorTextColor = Color.WHITE;
+        int linkNorTextColor = 0xFF483D8B;
         int linkPressBgColor = 0xFF87CEFA;
         int linkNormalBgColor = 0xFF83B5ED;
         SimplifySpanBuild simplifySpanBuild4 = new SimplifySpanBuild();

@@ -1,6 +1,7 @@
 package meitu.com.mylibrary.simplifyspan.customspan;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
@@ -72,11 +73,15 @@ public class CustomClickableSpan extends ClickableSpan {
         }
 
         // set background color And press status color
-        if (mBgColorPre != 0) {
+
+        ds.bgColor = isPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
+
+
+        /*if (mBgColorPre != 0) {
             ds.bgColor = isPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
         } else if (mBgColorNor != 0) {
             ds.bgColor = mBgColorNor;
-        }
+        }*/
         if (!isShowUnderline) {
             // clear underline
             ds.setUnderlineText(false);

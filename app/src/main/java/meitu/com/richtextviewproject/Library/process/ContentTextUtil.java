@@ -109,9 +109,9 @@ public class ContentTextUtil {
 
     public static SimplifySpanBuild getContent(String source, HashMap<String,SpecialUrlBean> urlHashMap, final Context context, TextView textView) {
         SimplifySpanBuild mSpanBuild = new SimplifySpanBuild();
-        int linkNorTextColor = 0xFF7914D9;
+        int linkNorTextColor = 0xFF483D8B;
         int linkPressBgColor = 0xFF87CEFA;
-        int linkNormalBgColor = 0xFF83B5ED;
+        int linkNormalBgColor = Color.RED;
         //设置正则
         Pattern pattern = Pattern.compile(ALL);
         Matcher matcher = pattern.matcher(source);
@@ -131,12 +131,12 @@ public class ContentTextUtil {
                    mSpanBuild.append(source.substring(preStart,start));
                     preStart=end+1;
                 }
-                mSpanBuild.append(new SpecialTextUnit(at, linkNorTextColor).setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
+                mSpanBuild.append(new SpecialTextUnit(at, linkNorTextColor)
+                        .setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
                     @Override
                     public void onClick(TextView tv, String clickText) {
-                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();
-                    }
-                }).setPressBgColor(linkNormalBgColor)));
+                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();}})
+                                .setPressBgColor(Color.TRANSPARENT)));
             }
             //处理##话题
             if (topic != null) {
@@ -147,12 +147,14 @@ public class ContentTextUtil {
                    mSpanBuild.append(source.substring(preStart,start));
                     preStart=end+1;
                 }
-                mSpanBuild.append(new SpecialTextUnit(topic, linkNorTextColor).setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
+                mSpanBuild.append(
+                        new SpecialTextUnit(topic, linkNorTextColor)
+                                .setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
                     @Override
                     public void onClick(TextView tv, String clickText) {
-                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();
-                    }
-                }).setPressBgColor(linkNormalBgColor)));
+                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();}
+                }).
+                                        setPressBgColor(Color.TRANSPARENT)));
 
             }
             // 处理url地址
@@ -171,9 +173,13 @@ public class ContentTextUtil {
                                 public void onClick(TextView tv, String clickText) {
                                     Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
                                 }
-                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(bean.getBgPressColor()).setNormalBgColor(bean.getBgNormalColor()),
-                            new SpecialImageUnit(context, bean.getIcon(), 40, 40).setGravity(SpecialGravity.CENTER),
-                            new SpecialTextUnit(bean.getURLName()));
+                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(Color.TRANSPARENT).setNormalBgColor(Color.TRANSPARENT),
+                            new SpecialImageUnit(context,bean.getURLName(),
+                                    bean.getIcon(), 40, 40,
+                                    context.getResources().getDrawable(R.drawable.bg_rectangle,context.getTheme())
+                            ).setGravity(SpecialGravity.CENTER),
+                            new SpecialTextUnit(bean.getURLName())
+                            );
 
                 }else {
                     mSpanBuild.appendMultiClickable(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
@@ -182,15 +188,23 @@ public class ContentTextUtil {
                                     Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
                                 }
                             }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(linkPressBgColor).setNormalBgColor(linkNormalBgColor),
-                            new SpecialImageUnit(context, BitmapFactory.decodeResource(context.getResources(), R.drawable.timeline_card_small_web), 40, 40).setGravity(SpecialGravity.CENTER),
-                            new SpecialTextUnit(bean.getURLName()));
+                            new SpecialImageUnit(context,bean.getURLName() ,BitmapFactory.decodeResource(context.getResources(), R.drawable.timeline_card_small_web), 40, 40).setGravity(SpecialGravity.CENTER),
+                            new SpecialTextUnit(bean.getURLName())
+                    );
                 }
 
             }
         }
         if (maxEnd<source.length()){
             mSpanBuild.append(source.substring(maxEnd,source.length()));
+
         }
+        mSpanBuild.append(new SpecialTextUnit("@英雄联盟", linkNorTextColor).setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
+            @Override
+            public void onClick(TextView tv, String clickText) {
+
+            }
+        }).setPressBgColor(linkPressBgColor)));
         return mSpanBuild;
     }
 

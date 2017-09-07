@@ -2,6 +2,7 @@ package meitu.com.mylibrary.simplifyspan.unit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 /**
  * Image Special Unit
@@ -19,6 +20,7 @@ public class SpecialImageUnit extends BaseSpecialUnit {
     private boolean isClickable;
     private int width; // px
     private int height; // px
+    private Drawable mDrawable;
 
     /**
      * @param context     Context
@@ -37,6 +39,22 @@ public class SpecialImageUnit extends BaseSpecialUnit {
         super(specialText);
         this.context = context;
         this.bitmap = bitmap;
+    }
+
+    /**
+     * @param context     Context
+     * @param specialText Special Text
+     * @param bitmap      Bitmap
+     * @param width       Width
+     * @param height      Height
+     */
+    public SpecialImageUnit(Context context, String specialText, Bitmap bitmap, int width, int height,Drawable drawable) {
+        super(specialText);
+        this.context = context;
+        this.bitmap = bitmap;
+        this.width = width;
+        this.height = height;
+        this.mDrawable =drawable;
     }
 
     /**
@@ -156,5 +174,9 @@ public class SpecialImageUnit extends BaseSpecialUnit {
 
     public Context getContext() {
         return context;
+    }
+
+    public Drawable getDrawable() {
+        return mDrawable;
     }
 }

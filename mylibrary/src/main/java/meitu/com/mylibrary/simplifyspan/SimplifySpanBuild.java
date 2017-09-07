@@ -335,9 +335,14 @@ public class SimplifySpanBuild {
                     if (specialTextUnit.getTextColor() != 0) {
                         spannableStringBuilder.setSpan(new ForegroundColorSpan(specialTextUnit.getTextColor()), startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
+                    //spannableStringBuilder.setSpan(new ForegroundColorSpan(specialTextUnit.getTextColor()), startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
 
                     // Set Text Background Color
-                    if (specialTextUnit.getTextBackgroundColor() != 0 && null == internalSpecialClickableUnit) {
+                  /*  if (specialTextUnit.getTextBackgroundColor() != 0 && null == internalSpecialClickableUnit) {
+                        spannableStringBuilder.setSpan(new BackgroundColorSpan(specialTextUnit.getTextBackgroundColor()), startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }*/
+                    if (null == internalSpecialClickableUnit) {
                         spannableStringBuilder.setSpan(new BackgroundColorSpan(specialTextUnit.getTextBackgroundColor()), startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
 
@@ -462,7 +467,6 @@ public class SimplifySpanBuild {
 
                 String specialText = specialTextUnit.getText();
                 if (TextUtils.isEmpty(specialText)) continue;
-
                 specialTextUnit.setClickableUnit(null);
 
                 // process start pos
@@ -483,6 +487,7 @@ public class SimplifySpanBuild {
                 if (specialImageUnit.getBgColor() == 0 && specialClickableUnit.getNormalBgColor() != 0) {
                     specialImageUnit.setBgColor(specialClickableUnit.getNormalBgColor());
                 }
+                //specialImageUnit.setBgColor(specialClickableUnit.getNormalBgColor());
 
                 // process start pos
                 specialImageUnit.setStartPoss(new int[]{baseStartPos + tempStrBuild.length()});
@@ -499,9 +504,9 @@ public class SimplifySpanBuild {
                 if (TextUtils.isEmpty(specialText)) continue;
 
                 specialLabelUnit.setClickable(true);
-                if (specialLabelUnit.getBgColor() == 0 && specialClickableUnit.getNormalBgColor() != 0) {
+               /* if (specialLabelUnit.getBgColor() == 0 && specialClickableUnit.getNormalBgColor() != 0) {
                     specialLabelUnit.setBgColor(specialClickableUnit.getNormalBgColor());
-                }
+                }*/
 
                 // process start pos
                 specialLabelUnit.setStartPoss(new int[]{baseStartPos + tempStrBuild.length()});
