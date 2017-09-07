@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/myDark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="meitu.com.richtextviewproject.MeituActivity">
+    <TextView
+        android:id="@+id/tv_meitu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <meitu.com.richtextviewproject.Library.widget.RichTextView
+        android:textColor="@android:color/white"
+        android:lineSpacingExtra="5dp"
+        android:letterSpacing="0.15"
+        android:lineSpacingMultiplier="1.5"
+        android:id="@+id/rtv_conent"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
