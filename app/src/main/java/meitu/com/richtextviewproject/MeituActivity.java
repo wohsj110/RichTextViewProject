@@ -49,7 +49,6 @@ public class MeituActivity extends AppCompatActivity implements OnClickableSpanL
         richTextBean.getUrlHashMap().put(mUrl,urlBean);
         richTextBean.getUrlHashMap().put(mUrl2,urlBean2);
         RichTextViewHelper.setRichText(richTextView,richTextBean);
-        //richTextView.setRichText(mSource);
 
 
     }

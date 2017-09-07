@@ -111,7 +111,6 @@ public class ContentTextUtil {
         SimplifySpanBuild mSpanBuild = new SimplifySpanBuild();
         int linkNorTextColor = 0xFF483D8B;
         int linkPressBgColor = 0xFF87CEFA;
-        int linkNormalBgColor = Color.RED;
         //设置正则
         Pattern pattern = Pattern.compile(ALL);
         Matcher matcher = pattern.matcher(source);
@@ -175,12 +174,11 @@ public class ContentTextUtil {
                                 }
                             }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(Color.TRANSPARENT).setNormalBgColor(Color.TRANSPARENT),
                             new SpecialImageUnit(context,bean.getURLName(),
-                                    bean.getIcon(), 40, 40,
+                                    bean.getIcon(), 33, 33,
                                     context.getResources().getDrawable(R.drawable.bg_rectangle,context.getTheme())
                             ).setGravity(SpecialGravity.CENTER),
-                            new SpecialTextUnit(bean.getURLName())
+                            new SpecialTextUnit(bean.getURLName()).setTextSize(13)
                             );
-
                 }
 
             }

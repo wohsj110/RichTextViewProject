@@ -83,39 +83,25 @@ public class CustomImageSpan extends ImageSpan implements OnClickStateChangeList
 
         float finalUnitHeight = bottom - top;
         float bgTop = bottom - finalUnitHeight;
-
-        /*if (isClickable && isSelected && pressBgColor != 0) {
-            // click background
-            paint.setColor(pressBgColor);
-            //canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
-            canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + mRect.height(), paint);
-        } else {
-            // normal background
-            if (mBgColor != 0) {
-                paint.setColor(mBgColor);
-                //canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
-                canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + mRect.height(), paint);
-            }
-        }*/
         if (mBgDrawable!=null){
             if (isSelected){
                 mBgDrawable.setState(new int[] {android.R.attr.state_pressed});
             }else {
                 mBgDrawable.setState(new int[] {});
             }
-            mBgDrawable.setBounds((int) x-8, (int) bgTop-8,(int)  x + drawableWidth+textLength+8,(int)  bgTop + lineHeight+8);
+            mBgDrawable.setBounds((int) x, (int) top, (int) (x + paint.measureText(text, start, end)),(int)  top + lineHeight);
             mBgDrawable.draw(canvas);
         }
         if (isClickable && isSelected) {
             // click background
             paint.setColor(pressBgColor);
-            canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
+            //canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + finalUnitHeight, paint);
 
             canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + lineHeight, paint);
         } else {
             // normal background
             paint.setColor(mBgColor);
-            canvas.drawRect(x, bgTop, x + drawableWidth+textLength, bgTop + lineHeight, paint);
+            canvas.drawRect(x, bgTop, x + drawableWidth, bgTop + lineHeight, paint);
 
         }
 
