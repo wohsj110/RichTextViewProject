@@ -406,7 +406,6 @@ public class SimplifySpanBuild {
                 for (int startPos : startPoss) {
                     CustomImageSpan curCustomImageSpan = new CustomImageSpan(normalSizeText, specialImageUnit);
                     spannableStringBuilder.setSpan(curCustomImageSpan, startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
                     if (specialImageUnit.isClickable()) {
                         addClickStateChangeListeners(startPos, startPos + specialTextLength, curCustomImageSpan);
                     }

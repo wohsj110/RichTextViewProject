@@ -18,6 +18,28 @@ public class SpecialImageUnit extends BaseSpecialUnit {
     private Bitmap bitmap;
     private int bgColor;
     private boolean isClickable;
+
+    public int getPadding() {
+        return mPadding;
+    }
+
+    public SpecialImageUnit setPadding(int padding) {
+        mPadding = padding;
+        return this;
+    }
+
+    private int mPadding;
+
+    public int getSpnWidth() {
+        return mSpnWidth;
+    }
+
+    public SpecialImageUnit setSpnWidth(int spnWidth) {
+        mSpnWidth = spnWidth;
+        return this;
+    }
+
+    private int mSpnWidth=0;
     private int width; // px
     private int height; // px
     private Drawable mDrawable;
@@ -43,13 +65,28 @@ public class SpecialImageUnit extends BaseSpecialUnit {
 
     /**
      * @param context     Context
-     * @param specialText Special Text
+     * @param bitmap      Bitmap
+     * @param width       Width
+     * @param height      Height
+     */
+    public SpecialImageUnit(Context context,  Bitmap bitmap, int width, int height,Drawable drawable) {
+        super(DEF_IMG_PLACEHOLDER);
+        this.context = context;
+        this.bitmap = bitmap;
+        this.width = width;
+        this.height = height;
+        this.mDrawable =drawable;
+    }
+
+
+    /**
+     * @param context     Context
      * @param bitmap      Bitmap
      * @param width       Width
      * @param height      Height
      */
     public SpecialImageUnit(Context context, String specialText, Bitmap bitmap, int width, int height,Drawable drawable) {
-        super(specialText);
+        super(DEF_IMG_PLACEHOLDER+specialText);
         this.context = context;
         this.bitmap = bitmap;
         this.width = width;

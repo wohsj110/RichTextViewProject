@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements OnClickableSpanLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
         TextView tvText1 = (TextView) findViewById(R.id.tv_text1);
         TextView tvText11 = (TextView) findViewById(R.id.tv_text11);
         TextView tvText2 = (TextView) findViewById(R.id.tv_text2);
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements OnClickableSpanLi
                 .append("有默认背景")
                 .append(new SpecialTextUnit("点我点我3").setClickableUnit(new SpecialClickableUnit(tvText41, this).setPressBgColor(Color.BLUE).setPressTextColor(Color.WHITE)).setTextColor(0xFFFF5000).setTextBackgroundColor(0xFF87CEEB))
                 .append("我只是个结尾");
-        tvText41.setText(simplifySpanBuild41.build());*/
+        tvText41.setText(simplifySpanBuild41.build());
 
         TextView richTextView = (TextView) findViewById(R.id.rtv_conent);
         RichTextBean richTextBean = new RichTextBean();

@@ -1,16 +1,17 @@
 package meitu.com.mylibrary.simplifyspan.customspan;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
+
 import java.util.List;
-import  meitu.com.mylibrary.simplifyspan.other.OnClickStateChangeListener;
-import  meitu.com.mylibrary.simplifyspan.other.OnClickableSpanListener;
-import  meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
+
+import meitu.com.mylibrary.simplifyspan.other.OnClickStateChangeListener;
+import meitu.com.mylibrary.simplifyspan.other.OnClickableSpanListener;
+import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
 
 /**
  * Custom ClickableSpan
@@ -42,8 +43,8 @@ public class CustomClickableSpan extends ClickableSpan {
     @Override
     public void onClick(View widget) {
         if (null != mOnClickableSpanListener) {
-            TextView tv = (TextView)widget;
-            Spanned spanned = (Spanned)tv.getText();
+            TextView tv = (TextView) widget;
+            Spanned spanned = (Spanned) tv.getText();
             int start = spanned.getSpanStart(this);
             int end = spanned.getSpanEnd(this);
             mOnClickableSpanListener.onClick(tv, spanned.subSequence(start, end).toString());
@@ -62,8 +63,10 @@ public class CustomClickableSpan extends ClickableSpan {
     @Override
     public void updateDrawState(TextPaint ds) {
         super.updateDrawState(ds);
-       // ds.setTextSize();
+        // ds.setTextSize();
         // set text color And press status color
+
+
         if (mTextColorNor != 0) {
             if (mTextColorPre != 0) {
                 ds.setColor(isPressed ? mTextColorPre : mTextColorNor);
@@ -71,6 +74,7 @@ public class CustomClickableSpan extends ClickableSpan {
                 ds.setColor(mTextColorNor);
             }
         }
+        //ds.setColor(isPressed ? mTextColorPre : mTextColorNor);
 
         // set background color And press status color
 

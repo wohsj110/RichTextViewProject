@@ -33,80 +33,6 @@ public class ContentTextUtil {
     private static final String ALL = "(" + AT + ")" + "|" + "(" + TOPIC + ")" + "|" + "(" + URL + ")";
 
 
-    public static SimplifySpanBuild getContent(String source, final Context context, TextView textView) {
-        SimplifySpanBuild mSpanBuild = new SimplifySpanBuild();
-        int linkNorTextColor = Color.WHITE;
-        int linkPressBgColor = 0xFF87CEFA;
-        int linkNormalBgColor = 0xFF83B5ED;
-        //设置正则
-        Pattern pattern = Pattern.compile(ALL);
-        Matcher matcher = pattern.matcher(source);
-        int maxEnd=0;
-        int preStart=0;
-        while (matcher.find()) {
-            final String at = matcher.group(1);
-            final String topic = matcher.group(2);
-            final String url = matcher.group(3);
-
-            //处理@用户
-            if (at != null) {
-                int start = matcher.start(1);
-                int end = start + at.length();
-                maxEnd=Math.max(maxEnd,end);
-                if (start!=0&&preStart!=start){
-                   mSpanBuild.append(source.substring(preStart,start));
-                    preStart=end+1;
-                }
-                mSpanBuild.append(new SpecialTextUnit(at, linkNorTextColor).setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
-                    @Override
-                    public void onClick(TextView tv, String clickText) {
-                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();
-                    }
-                }).setPressBgColor(Color.TRANSPARENT)));
-            }
-            //处理##话题
-            if (topic != null) {
-                int start = matcher.start(2);
-                int end = start + topic.length();
-                maxEnd=Math.max(maxEnd,end);
-                if (start!=0&&preStart!=start){
-                   mSpanBuild.append(source.substring(preStart,start));
-                    preStart=end+1;
-                }
-                mSpanBuild.append(new SpecialTextUnit(topic, linkNorTextColor).setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
-                    @Override
-                    public void onClick(TextView tv, String clickText) {
-                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();
-                    }
-                })));
-
-            }
-            // 处理url地址
-            if (url != null) {
-                int start = matcher.start(3);
-                int end = start + url.length();
-                maxEnd=Math.max(maxEnd,end);
-                if (start!=0&&preStart!=start){
-                    mSpanBuild.append(source.substring(preStart,start));
-                    preStart=end+1;
-                }
-                mSpanBuild.appendMultiClickable(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
-                            @Override
-                            public void onClick(TextView tv, String clickText) {
-                                Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
-                            }
-                        }).setNormalTextColor(linkNorTextColor).setPressBgColor(linkPressBgColor).setNormalBgColor(linkNormalBgColor),
-                        new SpecialImageUnit(context, BitmapFactory.decodeResource(context.getResources(), R.drawable.timeline_card_small_web), 40, 40).setGravity(SpecialGravity.CENTER),
-                        new SpecialTextUnit("网页链接"));
-            }
-        }
-        if (maxEnd<source.length()){
-            mSpanBuild.append(source.substring(maxEnd,source.length()));
-        }
-        return mSpanBuild;
-    }
-
-
     public static SimplifySpanBuild getContent(String source, HashMap<String,SpecialUrlBean> urlHashMap, final Context context, TextView textView) {
         SimplifySpanBuild mSpanBuild = new SimplifySpanBuild();
         int linkNorTextColor = 0xFF483D8B;
@@ -131,10 +57,12 @@ public class ContentTextUtil {
                     preStart=end+1;
                 }
                 mSpanBuild.append(new SpecialTextUnit(at, linkNorTextColor)
-                        .setClickableUnit(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
+                        .setClickableUnit(new SpecialClickableUnit(textView,
+                                new OnClickableSpanListener() {
                     @Override
                     public void onClick(TextView tv, String clickText) {
-                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();}})
+                        Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();}
+                        }).setPressTextColor(linkNorTextColor).setNormalTextColor(linkNorTextColor)
                                 .setPressBgColor(Color.TRANSPARENT)));
             }
             //处理##话题
@@ -152,8 +80,10 @@ public class ContentTextUtil {
                     @Override
                     public void onClick(TextView tv, String clickText) {
                         Toast.makeText(context, "Click Text: " + clickText, Toast.LENGTH_SHORT).show();}
-                }).
-                                        setPressBgColor(Color.TRANSPARENT)));
+                })
+                                        .setPressTextColor(linkNorTextColor)
+                                        .setNormalTextColor(linkNorTextColor)
+                                        .setPressBgColor(Color.TRANSPARENT)));
 
             }
             // 处理url地址
@@ -172,13 +102,27 @@ public class ContentTextUtil {
                                 public void onClick(TextView tv, String clickText) {
                                     Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
                                 }
-                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(Color.TRANSPARENT).setNormalBgColor(Color.TRANSPARENT),
-                            new SpecialImageUnit(context,bean.getURLName(),
-                                    bean.getIcon(), 33, 33,
+                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(Color.TRANSPARENT).setNormalBgColor(Color.TRANSPARENT)
+                            , new SpecialImageUnit(context,bean.getURLName(),bean.getIcon(), 33, 33,
                                     context.getResources().getDrawable(R.drawable.bg_rectangle,context.getTheme())
-                            ).setGravity(SpecialGravity.CENTER),
-                            new SpecialTextUnit(bean.getURLName()).setTextSize(13)
-                            );
+                                    )
+                                    .setSpnWidth(-1).setPadding(8)
+                                    //.setGravity(SpecialGravity.CENTER)
+
+                    );
+                }else {
+                    mSpanBuild.appendMultiClickable(new SpecialClickableUnit(textView, new OnClickableSpanListener() {
+                                @Override
+                                public void onClick(TextView tv, String clickText) {
+                                    Toast.makeText(context, "Click Text: " + url, Toast.LENGTH_SHORT).show();
+                                }
+                            }).setNormalTextColor(bean.getTextNormalColor()).setPressBgColor(Color.TRANSPARENT).setNormalBgColor(Color.TRANSPARENT)
+                            , new SpecialImageUnit(context,bean.getURLName(), BitmapFactory.decodeResource(context.getResources(), R.drawable.timeline_card_small_web), 33, 33,
+                                    context.getResources().getDrawable(R.drawable.bg_rectangle,context.getTheme()))
+                                    .setSpnWidth(-1)
+                                    //.setGravity(SpecialGravity.CENTER)
+
+                    );
                 }
 
             }
@@ -193,6 +137,7 @@ public class ContentTextUtil {
 
             }
         }).setPressBgColor(linkPressBgColor)));
+
         return mSpanBuild;
     }
 
