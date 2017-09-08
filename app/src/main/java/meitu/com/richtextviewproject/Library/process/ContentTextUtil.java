@@ -36,7 +36,6 @@ public class ContentTextUtil {
             final String at = matcher.group(1);
             final String topic = matcher.group(2);
             final String url = matcher.group(3);
-
             //处理@用户
             if (at != null) {
                 int start = matcher.start(1);
