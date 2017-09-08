@@ -3,6 +3,9 @@ package meitu.com.richtextviewproject.Library.widget;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+/**
+ * 需要被替换的 Url 实体类
+ */
 public class SpecialUrlBean {
     private String mMainURL;
     private String mURLName;

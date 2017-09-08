@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan;
+package meitu.com.mylibrary.quickspan;
 
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -20,20 +20,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import meitu.com.mylibrary.simplifyspan.customspan.CustomAbsoluteSizeSpan;
-import meitu.com.mylibrary.simplifyspan.customspan.CustomClickableSpan;
-import meitu.com.mylibrary.simplifyspan.customspan.CustomImageSpan;
-import meitu.com.mylibrary.simplifyspan.customspan.CustomLabelSpan;
-import meitu.com.mylibrary.simplifyspan.other.CustomLinkMovementMethod;
-import meitu.com.mylibrary.simplifyspan.other.OnClickStateChangeListener;
-import meitu.com.mylibrary.simplifyspan.other.SpecialConvertMode;
-import meitu.com.mylibrary.simplifyspan.other.SpecialGravity;
-import meitu.com.mylibrary.simplifyspan.unit.BaseSpecialUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialImageUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialLabelUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialRawSpanUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialTextUnit;
+import meitu.com.mylibrary.quickspan.customspan.CustomAbsoluteSizeSpan;
+import meitu.com.mylibrary.quickspan.customspan.CustomClickableSpan;
+import meitu.com.mylibrary.quickspan.customspan.CustomImageSpan;
+import meitu.com.mylibrary.quickspan.customspan.CustomLabelSpan;
+import meitu.com.mylibrary.quickspan.other.CustomLinkMovementMethod;
+import meitu.com.mylibrary.quickspan.other.OnClickStateChangeListener;
+import meitu.com.mylibrary.quickspan.other.SpecialConvertMode;
+import meitu.com.mylibrary.quickspan.other.SpecialGravity;
+import meitu.com.mylibrary.quickspan.unit.BaseSpecialUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialClickableUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialImageUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialLabelUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialRawSpanUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialTextUnit;
 
 /**
  * SimplifySpan Build
@@ -42,7 +42,7 @@ import meitu.com.mylibrary.simplifyspan.unit.SpecialTextUnit;
  * Des:
  * Paramas
  */
-public class SimplifySpanBuild {
+public class QuickSpanBuild {
     private List<BaseSpecialUnit> mFinalSpecialUnit;
     private List<BaseSpecialUnit> mBeforeSpecialUnit;
     private StringBuilder mStringBuilder;
@@ -52,15 +52,15 @@ public class SimplifySpanBuild {
 
     private StringBuilder mNormalSizeText;
 
-    public SimplifySpanBuild() {
+    public QuickSpanBuild() {
         this(null);
     }
 
-    public SimplifySpanBuild(String initializeNormalText) {
+    public QuickSpanBuild(String initializeNormalText) {
         init(initializeNormalText);
     }
 
-    public SimplifySpanBuild(String initializeNormalText, BaseSpecialUnit... normalSpecialUnits) {
+    public QuickSpanBuild(String initializeNormalText, BaseSpecialUnit... normalSpecialUnits) {
         init(initializeNormalText, normalSpecialUnits);
     }
 
@@ -169,9 +169,9 @@ public class SimplifySpanBuild {
      * append SpecialUnit
      *
      * @param specialUnit SpecialUnit (Not support convertMode)
-     * @return SimplifySpanBuild
+     * @return QuickSpanBuild
      */
-    public SimplifySpanBuild append(BaseSpecialUnit specialUnit) {
+    public QuickSpanBuild append(BaseSpecialUnit specialUnit) {
         if (null == specialUnit) return this;
 
         String specialText = specialUnit.getText();
@@ -188,9 +188,9 @@ public class SimplifySpanBuild {
      * append normal text
      *
      * @param text normal text
-     * @return SimplifySpanBuild
+     * @return QuickSpanBuild
      */
-    public SimplifySpanBuild append(String text) {
+    public QuickSpanBuild append(String text) {
         if (TextUtils.isEmpty(text)) return this;
 
         mNormalSizeText.append(text);
@@ -202,9 +202,9 @@ public class SimplifySpanBuild {
      * append SpecialUnit to first (Behind the existing BeforeContent)
      *
      * @param specialUnit (Not support convertMode)
-     * @return SimplifySpanBuild
+     * @return QuickSpanBuild
      */
-    public SimplifySpanBuild appendToFirst(BaseSpecialUnit specialUnit) {
+    public QuickSpanBuild appendToFirst(BaseSpecialUnit specialUnit) {
         if (null == specialUnit) return this;
 
         String specialText = specialUnit.getText();
@@ -222,9 +222,9 @@ public class SimplifySpanBuild {
      * append normal text to first (Behind the existing BeforeContent)
      *
      * @param text normal text
-     * @return SimplifySpanBuild
+     * @return QuickSpanBuild
      */
-    public SimplifySpanBuild appendToFirst(String text) {
+    public QuickSpanBuild appendToFirst(String text) {
         if (TextUtils.isEmpty(text)) return this;
 
         mNormalSizeText.append(text);
@@ -239,7 +239,7 @@ public class SimplifySpanBuild {
      * @param specialUnitOrStrings Unit Or String
      * @return
      */
-    public SimplifySpanBuild appendMultiClickable(SpecialClickableUnit specialClickableUnit, Object... specialUnitOrStrings) {
+    public QuickSpanBuild appendMultiClickable(SpecialClickableUnit specialClickableUnit, Object... specialUnitOrStrings) {
         processMultiClickableSpecialUnit(false, specialClickableUnit, specialUnitOrStrings);
         return this;
     }
@@ -252,7 +252,7 @@ public class SimplifySpanBuild {
      * @param specialUnitOrStrings Unit Or String
      * @return
      */
-    public SimplifySpanBuild appendMultiClickableToFirst(SpecialClickableUnit specialClickableUnit, Object... specialUnitOrStrings) {
+    public QuickSpanBuild appendMultiClickableToFirst(SpecialClickableUnit specialClickableUnit, Object... specialUnitOrStrings) {
         processMultiClickableSpecialUnit(true, specialClickableUnit, specialUnitOrStrings);
         return this;
     }
@@ -442,7 +442,7 @@ public class SimplifySpanBuild {
                 int startPos = startPoss[0];
                 spannableStringBuilder.setSpan(specialRawSpanUnit.getSpanObj(), startPos, startPos + specialTextLength, specialRawSpanUnit.getFlags());
 
-                // Temporarily unable to support all
+                // 后续可以支持更多
             }
         }
 

@@ -7,12 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import meitu.com.mylibrary.simplifyspan.SimplifySpanBuild;
-import meitu.com.mylibrary.simplifyspan.other.OnClickableSpanListener;
-import meitu.com.mylibrary.simplifyspan.other.SpecialGravity;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialImageUnit;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialTextUnit;
+
+import meitu.com.mylibrary.quickspan.QuickSpanBuild;
+import meitu.com.mylibrary.quickspan.other.OnClickableSpanListener;
+import meitu.com.mylibrary.quickspan.other.SpecialGravity;
+import meitu.com.mylibrary.quickspan.unit.SpecialClickableUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialImageUnit;
+import meitu.com.mylibrary.quickspan.unit.SpecialTextUnit;
 import meitu.com.richtextviewproject.Library.widget.RichTextBean;
 
 import meitu.com.richtextviewproject.Library.widget.RichTextViewHelper;
@@ -56,22 +57,22 @@ public class MeituActivity extends AppCompatActivity implements OnClickableSpanL
         int linkNorTextColor = 0xFF483D8B;
         int linkPressBgColor = 0xFF87CEFA;
         int linkNormalBgColor = 0xFF83B5ED;
-        SimplifySpanBuild simplifySpanBuild4 = new SimplifySpanBuild();
-        simplifySpanBuild4.append(new SpecialTextUnit("@英雄联盟", linkNorTextColor).setClickableUnit(new SpecialClickableUnit(mTextView, this).setPressBgColor(Color.TRANSPARENT)))
+        QuickSpanBuild quickSpanBuild4 = new QuickSpanBuild();
+        quickSpanBuild4.append(new SpecialTextUnit("@英雄联盟", linkNorTextColor).setClickableUnit(new SpecialClickableUnit(mTextView, this).setPressBgColor(Color.TRANSPARENT)))
                 .append(" : ")
                 .append(new SpecialTextUnit("#LOG夜话#", linkNorTextColor).setClickableUnit(new SpecialClickableUnit(mTextView, this)))
                 .append("想提前看更新的内容情点击链接");
-        simplifySpanBuild4.appendMultiClickable(new SpecialClickableUnit(mTextView, this).setNormalTextColor(linkNorTextColor).setPressBgColor(linkPressBgColor),
+        quickSpanBuild4.appendMultiClickable(new SpecialClickableUnit(mTextView, this).setNormalTextColor(linkNorTextColor).setPressBgColor(linkPressBgColor),
                 "\n",
                 new SpecialImageUnit(this, BitmapFactory.decodeResource(getResources(), R.drawable.timeline_card_small_video), 35, 35).setGravity(SpecialGravity.CENTER),
                 new SpecialTextUnit("LOL新大战闻声识英雄 "));
-        simplifySpanBuild4.append("完整文章见 ");
+        quickSpanBuild4.append("完整文章见 ");
 
-        simplifySpanBuild4.appendMultiClickable(new SpecialClickableUnit(mTextView, this).setNormalTextColor(linkNorTextColor).setPressBgColor(linkPressBgColor).setNormalBgColor(linkNormalBgColor),
+        quickSpanBuild4.appendMultiClickable(new SpecialClickableUnit(mTextView, this).setNormalTextColor(linkNorTextColor).setPressBgColor(linkPressBgColor).setNormalBgColor(linkNormalBgColor),
                 new SpecialImageUnit(this, BitmapFactory.decodeResource(getResources(), R.drawable.timeline_card_small_web), 42, 42).setGravity(SpecialGravity.CENTER),
                 new SpecialTextUnit("网页链接"));
-        simplifySpanBuild4.append(" 凑数字");
-        mTextView.setText(simplifySpanBuild4.build());
+        quickSpanBuild4.append(" 凑数字");
+        mTextView.setText(quickSpanBuild4.build());
         mTextView.setTextColor(Color.YELLOW);
         mTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

@@ -1,10 +1,10 @@
-package meitu.com.mylibrary.simplifyspan.other;
+package meitu.com.mylibrary.quickspan.other;
 
 /**
  * Special Convert Mode
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: 转换模式
  * Paramas
  */
 public class SpecialConvertMode {

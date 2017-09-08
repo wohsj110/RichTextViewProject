@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.customspan;
+package meitu.com.mylibrary.quickspan.customspan;
 
 import android.graphics.Color;
 import android.text.Spanned;
@@ -9,22 +9,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import meitu.com.mylibrary.simplifyspan.other.OnClickStateChangeListener;
-import meitu.com.mylibrary.simplifyspan.other.OnClickableSpanListener;
-import meitu.com.mylibrary.simplifyspan.unit.SpecialClickableUnit;
+import meitu.com.mylibrary.quickspan.other.OnClickStateChangeListener;
+import meitu.com.mylibrary.quickspan.other.OnClickableSpanListener;
+import meitu.com.mylibrary.quickspan.unit.SpecialClickableUnit;
 
 /**
  * Custom ClickableSpan
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: CustomClickableSpan
  * Paramas
  */
 public class CustomClickableSpan extends ClickableSpan {
     private List<OnClickStateChangeListener> mOnClickStateChangeListeners;
     private OnClickableSpanListener mOnClickableSpanListener;
-    private boolean isPressed;
-    private boolean isShowUnderline;
+    private boolean mIsPressed;
+    private boolean mIsShowUnderline;
     private int mTextColorNor;
     private int mTextColorPre;
     private int mBgColorNor;
@@ -35,7 +35,7 @@ public class CustomClickableSpan extends ClickableSpan {
         mTextColorPre = specialClickableUnit.getPressTextColor();
         mBgColorNor = specialClickableUnit.getNormalBgColor();
         mBgColorPre = specialClickableUnit.getPressBgColor();
-        isShowUnderline = specialClickableUnit.isShowUnderline();
+        mIsShowUnderline = specialClickableUnit.isShowUnderline();
         mOnClickableSpanListener = specialClickableUnit.getOnClickListener();
         mOnClickStateChangeListeners = specialClickableUnit.getOnClickStateChangeListeners();
     }
@@ -57,7 +57,7 @@ public class CustomClickableSpan extends ClickableSpan {
                 csl.onStateChange(isSelected, mBgColorPre);
             }
         }
-        isPressed = isSelected;
+        mIsPressed = isSelected;
     }
 
     @Override
@@ -65,28 +65,22 @@ public class CustomClickableSpan extends ClickableSpan {
         super.updateDrawState(ds);
         // ds.setTextSize();
         // set text color And press status color
-
-
         if (mTextColorNor != 0) {
             if (mTextColorPre != 0) {
-                ds.setColor(isPressed ? mTextColorPre : mTextColorNor);
+                ds.setColor(mIsPressed ? mTextColorPre : mTextColorNor);
             } else {
                 ds.setColor(mTextColorNor);
             }
         }
-        //ds.setColor(isPressed ? mTextColorPre : mTextColorNor);
-
         // set background color And press status color
 
-        ds.bgColor = isPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
-
-
+        ds.bgColor = mIsPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
         /*if (mBgColorPre != 0) {
-            ds.bgColor = isPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
+            ds.bgColor = mIsPressed ? mBgColorPre : mBgColorNor == 0 ? Color.TRANSPARENT : mBgColorNor;
         } else if (mBgColorNor != 0) {
             ds.bgColor = mBgColorNor;
         }*/
-        if (!isShowUnderline) {
+        if (!mIsShowUnderline) {
             // clear underline
             ds.setUnderlineText(false);
         }

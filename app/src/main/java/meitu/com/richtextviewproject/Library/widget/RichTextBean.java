@@ -9,6 +9,9 @@ import java.util.HashMap;
  * Paramas
  */
 
+/**
+ * 富文本的实体类
+ */
 public class RichTextBean {
     private String mTextcontent;
     private HashMap<String, SpecialUrlBean> mUrlHashMap = new HashMap<>();

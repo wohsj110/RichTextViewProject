@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.unit;
+package meitu.com.mylibrary.quickspan.unit;
 
 import android.text.Spanned;
 
@@ -6,27 +6,27 @@ import android.text.Spanned;
  * Special Raw Span Unit
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: 带有 flag 的 直接 对象
  * Paramas
  */
 public class SpecialRawSpanUnit extends BaseSpecialUnit {
-    private Object spanObj;
-    private int flags;
+    private Object mSpanObj; //对象
+    private int flags; //span flag
 
     public SpecialRawSpanUnit(String text, Object spanObj) {
         super(text);
-        this.spanObj = spanObj;
+        this.mSpanObj = spanObj;
         this.flags = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE;
     }
 
     public SpecialRawSpanUnit(String text, Object spanObj, int flags) {
         super(text);
-        this.spanObj = spanObj;
+        this.mSpanObj = spanObj;
         this.flags = flags;
     }
 
     public Object getSpanObj() {
-        return spanObj;
+        return mSpanObj;
     }
 
     public int getFlags() {

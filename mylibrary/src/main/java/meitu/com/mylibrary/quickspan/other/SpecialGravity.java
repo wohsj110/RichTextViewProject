@@ -1,10 +1,10 @@
-package meitu.com.mylibrary.simplifyspan.other;
+package meitu.com.mylibrary.quickspan.other;
 
 /**
  * Special Gravity
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: 位置 Gravity
  * Paramas
  */
 public class SpecialGravity {

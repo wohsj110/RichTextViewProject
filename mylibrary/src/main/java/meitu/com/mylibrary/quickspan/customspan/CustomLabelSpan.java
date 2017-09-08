@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.customspan;
+package meitu.com.mylibrary.quickspan.customspan;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,15 +8,15 @@ import android.graphics.RectF;
 import android.media.ThumbnailUtils;
 import android.text.style.ReplacementSpan;
 
-import  meitu.com.mylibrary.simplifyspan.other.OnClickStateChangeListener;
-import  meitu.com.mylibrary.simplifyspan.other.SpecialGravity;
-import  meitu.com.mylibrary.simplifyspan.unit.SpecialLabelUnit;
+import meitu.com.mylibrary.quickspan.other.OnClickStateChangeListener;
+import meitu.com.mylibrary.quickspan.other.SpecialGravity;
+import meitu.com.mylibrary.quickspan.unit.SpecialLabelUnit;
 
 /**
  * Custom Label Span
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: CustomLabelSpan
  * Paramas
  */
 public class CustomLabelSpan extends ReplacementSpan implements OnClickStateChangeListener {
@@ -66,7 +66,8 @@ public class CustomLabelSpan extends ReplacementSpan implements OnClickStateChan
     }
 
     private void initPadding() {
-        if (mSpecialLabelUnit.getLabelBgHeight() > 0 || mSpecialLabelUnit.getLabelBgWidth() > 0) return ;
+        if (mSpecialLabelUnit.getLabelBgHeight() > 0 || mSpecialLabelUnit.getLabelBgWidth() > 0)
+            return;
 
         int allPadding = mSpecialLabelUnit.getPadding();
 
@@ -87,7 +88,8 @@ public class CustomLabelSpan extends ReplacementSpan implements OnClickStateChan
             mPaddingRight = allPadding;
         }
 
-        if (mPaddingTop > 0 || mPaddingBottom > 0 || mPaddingLeft > 0 || mPaddingRight > 0) isLabelBgCenter = false;
+        if (mPaddingTop > 0 || mPaddingBottom > 0 || mPaddingLeft > 0 || mPaddingRight > 0)
+            isLabelBgCenter = false;
     }
 
     @Override
@@ -120,18 +122,15 @@ public class CustomLabelSpan extends ReplacementSpan implements OnClickStateChan
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
         float finalUnitHeight = bottom - top;
         float bgTop = bottom - finalUnitHeight;
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-        int lineHeight = (int) (Math.ceil(fontMetrics.descent - fontMetrics.ascent) + 2);
-        if (isClickable && isSelected ) {
+        if (isClickable && isSelected) {
             // click background
             paint.setColor(pressBgColor);
-            //canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
-            canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + lineHeight, paint);
+            canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
+
         } else {
             // normal background
-                paint.setColor(mBgColor);
-                //canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
-                canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + lineHeight, paint);
+            paint.setColor(mBgColor);
+            canvas.drawRect(x, bgTop, x + mFinalWidth, bgTop + finalUnitHeight, paint);
         }
 
         float labelTextSize = mSpecialLabelUnit.getLabelTextSize();

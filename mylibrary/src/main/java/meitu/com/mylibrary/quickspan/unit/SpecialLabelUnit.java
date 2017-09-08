@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.unit;
+package meitu.com.mylibrary.quickspan.unit;
 
 import android.graphics.Bitmap;
 
@@ -6,14 +6,14 @@ import android.graphics.Bitmap;
  * Label Special Unit
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: LabelSpan 的对应设置参数
  * Paramas
  */
 public class SpecialLabelUnit extends BaseSpecialUnit {
-    private int labelTextColor;
-    private float labelTextSize; // sp
+    private int mLabelTextColor;// label 文字颜色
+    private float mLabelTextSize; // sp|px label 文字 的 size
     private Bitmap mBitmap;
-    private int labelBgColor;
+    private int labelBgColor;//label的背景色
     private float labelBgRadius;
     private int labelBgWidth; // px
     private int labelBgHeight; // px
@@ -25,7 +25,7 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
     private boolean isShowBorder;
     private boolean isTextBold;
     private boolean isClickable;
-    private int bgColor;
+    private int bgColor;//背景色
 
     /**
      * @param labelText      label text
@@ -35,8 +35,8 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
      */
     public SpecialLabelUnit(String labelText, int labelTextColor, float labelTextSize, int labelBgColor) {
         super(labelText);
-        this.labelTextSize = labelTextSize;
-        this.labelTextColor = labelTextColor;
+        this.mLabelTextSize = labelTextSize;
+        this.mLabelTextColor = labelTextColor;
         this.labelBgColor = labelBgColor;
     }
 
@@ -50,8 +50,8 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
      */
     public SpecialLabelUnit(String labelText, int labelTextColor, float labelTextSize, int labelBgColor, int labelBgWidth, int labelBgHeight) {
         super(labelText);
-        this.labelTextSize = labelTextSize;
-        this.labelTextColor = labelTextColor;
+        this.mLabelTextSize = labelTextSize;
+        this.mLabelTextColor = labelTextColor;
         this.labelBgColor = labelBgColor;
         this.labelBgWidth = labelBgWidth;
         this.labelBgHeight = labelBgHeight;
@@ -65,8 +65,8 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
      */
     public SpecialLabelUnit(String labelText, int labelTextColor, float labelTextSize, Bitmap bitmap) {
         super(labelText);
-        this.labelTextSize = labelTextSize;
-        this.labelTextColor = labelTextColor;
+        this.mLabelTextSize = labelTextSize;
+        this.mLabelTextColor = labelTextColor;
         this.mBitmap = bitmap;
     }
 
@@ -80,8 +80,8 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
      */
     public SpecialLabelUnit(String labelText, int labelTextColor, float labelTextSize, Bitmap bitmap, int labelBgWidth, int labelBgHeight) {
         super(labelText);
-        this.labelTextSize = labelTextSize;
-        this.labelTextColor = labelTextColor;
+        this.mLabelTextSize = labelTextSize;
+        this.mLabelTextColor = labelTextColor;
         this.mBitmap = bitmap;
         this.labelBgWidth = labelBgWidth;
         this.labelBgHeight = labelBgHeight;
@@ -147,10 +147,11 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
     }
 
     /**
-     * Set Convert Mode
+     * 设置转换模式
      *
      * @param convertMode use SpecialConvertMode.xx
-     * @return
+     *
+     * @return this
      */
     public SpecialLabelUnit setConvertMode(int convertMode) {
         this.convertMode = convertMode;
@@ -170,7 +171,7 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
     }
 
     public int getLabelTextColor() {
-        return labelTextColor;
+        return mLabelTextColor;
     }
 
     /**
@@ -179,7 +180,7 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
      * @return px
      */
     public float getLabelTextSize() {
-        return labelTextSize;
+        return mLabelTextSize;
     }
 
     public int getPadding() {
@@ -203,7 +204,7 @@ public class SpecialLabelUnit extends BaseSpecialUnit {
     }
 
     /**
-     * Use only in SimplifySpanBuild
+     * 只有在 自定义的SpanBuild 内部调用
      *
      * @param clickable
      */

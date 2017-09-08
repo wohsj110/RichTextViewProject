@@ -1,11 +1,7 @@
 package meitu.com.richtextviewproject.Library.widget;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +13,8 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import java.util.HashMap;
 import java.util.Map;
-import meitu.com.mylibrary.simplifyspan.SimplifySpanBuild;
+
+import meitu.com.mylibrary.quickspan.QuickSpanBuild;
 import meitu.com.richtextviewproject.Library.process.ContentTextUtil;
 import meitu.com.richtextviewproject.R;
 
@@ -30,7 +27,7 @@ public class RichTextViewHelper{
 
     public static void setRichText(final TextView textView, final RichTextBean richTextBean) {
         final long startTime = System.currentTimeMillis();
-        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(),richTextBean.getUrlHashMap(), textView.getContext(), textView);
+        QuickSpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(),richTextBean.getUrlHashMap(), textView.getContext(), textView);
         textView.setText(spanBuild.build());
         Log.e("耗时","耗时=="+(System.currentTimeMillis()-startTime));
         BitmapFactory.Options decodingOptions = new BitmapFactory.Options();
@@ -58,7 +55,7 @@ public class RichTextViewHelper{
                     if (checkLoadAll(richTextBean.getUrlHashMap())) {
                         Log.e("耗时","异步加载图片耗时=="+(System.currentTimeMillis()-startTimeAsync));
                         long startTime = System.currentTimeMillis();
-                        SimplifySpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(), richTextBean.getUrlHashMap(), textView.getContext(), textView);
+                        QuickSpanBuild spanBuild = ContentTextUtil.getContent(richTextBean.getTextcontent(), richTextBean.getUrlHashMap(), textView.getContext(), textView);
                         textView.setText(spanBuild.build());
                         Log.e("耗时","耗时=="+(System.currentTimeMillis()-startTime));
                     }

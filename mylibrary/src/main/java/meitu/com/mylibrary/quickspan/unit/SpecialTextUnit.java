@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.unit;
+package meitu.com.mylibrary.quickspan.unit;
 
 import android.widget.TextView;
 
@@ -10,14 +10,14 @@ import android.widget.TextView;
  * Paramas
  */
 public class SpecialTextUnit extends BaseSpecialUnit {
-    private int textColor;
-    private int textBackgroundColor;
-    private float textSize; // sp
-    private boolean isShowUnderline;
-    private boolean isShowStrikeThrough;
-    private boolean isTextBold;
-    private SpecialClickableUnit specialClickableUnit;
-    private TextView curTextView;
+    private int mTextColor;//文字的颜色
+    private int mTextBackgroundColor;//文字的背景色
+    private float mTextSize; // sp(px) 文字的大小
+    private boolean mIsShowUnderline;//是否显示下划线
+    private boolean mIsShowStrikeThrough;//是否显示 Strike
+    private boolean mIsTextBold;//是否使用 TextBold
+    private SpecialClickableUnit mSpecialClickableUnit;//为了Text 可以被点击
+    private TextView mCurTextView;//当前的TextView
 
     /**
      * @param text text
@@ -28,11 +28,11 @@ public class SpecialTextUnit extends BaseSpecialUnit {
 
     /**
      * @param text      text
-     * @param textColor Text Color
+     * @param texColor Text Color
      */
-    public SpecialTextUnit(String text, int textColor) {
+    public SpecialTextUnit(String text, int texColor) {
         this(text);
-        this.textColor = textColor;
+        this.mTextColor = texColor;
     }
 
     /**
@@ -42,8 +42,8 @@ public class SpecialTextUnit extends BaseSpecialUnit {
      */
     public SpecialTextUnit(String text, int textColor, float textSize) {
         this(text);
-        this.textColor = textColor;
-        this.textSize = textSize;
+        this.mTextColor = textColor;
+        this.mTextSize = textSize;
     }
 
     /**
@@ -55,10 +55,10 @@ public class SpecialTextUnit extends BaseSpecialUnit {
      */
     public SpecialTextUnit(String text, int textColor, float textSize, int gravity, TextView curTextView) {
         this(text);
-        this.textColor = textColor;
-        this.textSize = textSize;
+        this.mTextColor = textColor;
+        this.mTextSize = textSize;
         this.gravity = gravity;
-        this.curTextView = curTextView;
+        this.mCurTextView = curTextView;
     }
 
     /**
@@ -67,60 +67,60 @@ public class SpecialTextUnit extends BaseSpecialUnit {
      * @return SpecialTextUnit
      */
     public SpecialTextUnit showStrikeThrough() {
-        isShowStrikeThrough = true;
+        mIsShowStrikeThrough = true;
         return this;
     }
 
     /**
-     * Show Underline
+     * 是否显示下滑线路
      *
      * @return SpecialTextUnit
      */
     public SpecialTextUnit showUnderline() {
-        isShowUnderline = true;
+        mIsShowUnderline = true;
         return this;
     }
 
     /**
-     * Use Text Bold
+     * 使用 TextBlod
      *
      * @return SpecialTextUnit
      */
     public SpecialTextUnit useTextBold() {
-        isTextBold = true;
+        mIsTextBold = true;
         return this;
     }
 
     /**
-     * Set Background Color
+     * 设置背景色
      *
      * @param textBackgroundColor color
      * @return SpecialTextUnit
      */
     public SpecialTextUnit setTextBackgroundColor(int textBackgroundColor) {
-        this.textBackgroundColor = textBackgroundColor;
+        this.mTextBackgroundColor = textBackgroundColor;
         return this;
     }
 
     /**
-     * Set Special Text Color
+     * 设置 Special Text 的字体颜色
      *
-     * @param textColor color
+     * @param mTextColor color
      * @return SpecialTextUnit
      */
-    public SpecialTextUnit setTextColor(int textColor) {
-        this.textColor = textColor;
+    public SpecialTextUnit setTextColor(int mTextColor) {
+        this.mTextColor = mTextColor;
         return this;
     }
 
     /**
-     * Set Special Text Size
+     * 设置 Special Text 的 Size
      *
-     * @param textSize size (sp)
+     * @param mTextSize size (sp|px)
      * @return SpecialTextUnit
      */
-    public SpecialTextUnit setTextSize(float textSize) {
-        this.textSize = textSize;
+    public SpecialTextUnit setTextSize(float mTextSize) {
+        this.mTextSize = mTextSize;
         return this;
     }
 
@@ -131,7 +131,7 @@ public class SpecialTextUnit extends BaseSpecialUnit {
      * @return SpecialTextUnit
      */
     public SpecialTextUnit setClickableUnit(SpecialClickableUnit specialClickableUnit) {
-        this.specialClickableUnit = specialClickableUnit;
+        this.mSpecialClickableUnit = specialClickableUnit;
         return this;
     }
 
@@ -143,13 +143,13 @@ public class SpecialTextUnit extends BaseSpecialUnit {
      * @return SpecialTextUnit
      */
     public SpecialTextUnit setGravity(TextView curTextView, int gravity) {
-        this.curTextView = curTextView;
+        this.mCurTextView = curTextView;
         this.gravity = gravity;
         return this;
     }
 
     /**
-     * Set Convert Mode
+     * 设置转换模式
      *
      * @param convertMode use SpecialConvertMode.xx
      * @return SpecialTextUnit
@@ -160,35 +160,35 @@ public class SpecialTextUnit extends BaseSpecialUnit {
     }
 
     public int getTextColor() {
-        return textColor;
+        return mTextColor;
     }
 
     public int getTextBackgroundColor() {
-        return textBackgroundColor;
+        return mTextBackgroundColor;
     }
 
     public float getTextSize() {
-        return textSize;
+        return mTextSize;
     }
 
     public boolean isShowUnderline() {
-        return isShowUnderline;
+        return mIsShowUnderline;
     }
 
     public boolean isShowStrikeThrough() {
-        return isShowStrikeThrough;
+        return mIsShowStrikeThrough;
     }
 
     public boolean isTextBold() {
-        return isTextBold;
+        return mIsTextBold;
     }
 
     public TextView getCurTextView() {
-        return curTextView;
+        return mCurTextView;
     }
 
     public SpecialClickableUnit getSpecialClickableUnit() {
-        return specialClickableUnit;
+        return mSpecialClickableUnit;
     }
 
 }

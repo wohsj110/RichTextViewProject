@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.other;
+package meitu.com.mylibrary.quickspan.other;
 
 import android.text.Layout;
 import android.text.Selection;
@@ -7,13 +7,13 @@ import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-import  meitu.com.mylibrary.simplifyspan.customspan.CustomClickableSpan;
+import  meitu.com.mylibrary.quickspan.customspan.CustomClickableSpan;
 
 /**
  * Custom LinkMovementMethod
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: 自定义的 LinkMovementMethod
  * Paramas
  */
 public class CustomLinkMovementMethod extends LinkMovementMethod {
@@ -53,6 +53,13 @@ public class CustomLinkMovementMethod extends LinkMovementMethod {
         return true;
     }
 
+    /**
+     *获得被 触摸 span 通过设置 press状态 来分发点击事件
+     * @param textView 当前的textView
+     * @param spannable 对应的spanable
+     * @param event 事件
+     * @return 自定义的ClickSpan
+     */
     private CustomClickableSpan getPressedSpan(TextView textView, Spannable spannable, MotionEvent event) {
         int x = (int) event.getX();
         int y = (int) event.getY();

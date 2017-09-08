@@ -1,4 +1,4 @@
-package meitu.com.mylibrary.simplifyspan.customspan;
+package meitu.com.mylibrary.quickspan.customspan;
 
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
@@ -6,24 +6,24 @@ import android.text.TextPaint;
 import android.text.style.AbsoluteSizeSpan;
 import android.widget.TextView;
 
-import   meitu.com.mylibrary.simplifyspan.other.SpecialGravity;
+import   meitu.com.mylibrary.quickspan.other.SpecialGravity;
 
 /**
  * Custom AbsoluteSizeSpan
  * Author huangshijie on 2017/9/4.
  * E-mail: wohsj110@gmail.com
- * Des:
+ * Des: CustomAbsoluteSizeSpan
  * Paramas
  */
 @SuppressLint("ParcelCreator")
 public class CustomAbsoluteSizeSpan extends AbsoluteSizeSpan {
-    private TextView mTextView;
-    private int mGravity;
-    private int mOffsetBaselineShift;
-    private String mText;
+    private TextView mTextView;//当前的TextView
+    private int mGravity;// 位置的 Gravity
+    private int mOffsetBaselineShift;//基线
+    private String mText;//文字
     private Rect mTextViewRect = new Rect();
     private Rect mTextRect = new Rect();
-    private String mNormalSizeText;
+    private String mNormalSizeText;//非匹配的文字
 
     public CustomAbsoluteSizeSpan(String normalSizeText, String text, int size, TextView textView, int gravity) {
         super(size, true);
